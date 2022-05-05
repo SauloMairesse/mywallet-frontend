@@ -1,15 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import axios from 'axios'
+import usuarioINFO from '../contexts/userINFO'
 
 export default function Register(){
+
     const [registerINFO, setRegisterINFO] = React.useState({name: '',
                                                             email: '',
                                                             password: '',
                                                             pwConfirmation: ''})
+    const navigate = useNavigate()
+
     function actionOnSubmit(){
-        alert('deu Certo aqui')
-        return (prompt('ola eu aqui'))
+        event.preventDefault();
+        const URL = 'https://localhost:5000'
+        const promise = axios.post(URL, {...registerINFO})
+        promise.then( (res) => {alert('Registrado')
+                                navigate('/')} )
+        promise.catch( (err) => {console.log('Erro actionOnSubmit:\n', err)} )
     }
     return(
         <RegisterHTML>

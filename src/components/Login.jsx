@@ -1,13 +1,23 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from 'styled-components'
-export default function Login(){
+import usuarioINFO from "../contexts/userINFO"
+import axios from "axios"
 
+export default function Login(){
+    const [userINFO, setUserINFO] =React.useContext(usuarioINFO)
     const [loginINFO, setLoginINFO] = React.useState({email: '',
                                                     password: '',})
+
+    const navigate = useNavigate()
+
     function actionOnSubmit(){
-        alert('deu Certo aqui')
-        return (prompt('ola eu aqui'))
+        event.preventDefault();
+        const URL = 'https://localhost:5000'
+        const promise = axios.post(URL, {...loginINFO})
+        promise.then( (res) => {setUserINFO(res.data)
+                                navigate('/FaltaProximaTela')} )
+        promise.catch( (err) => {console.log('Erro actionOnSubmit:\n', err)} )
     }
     return (
         <LoginHTML>
