@@ -18,8 +18,8 @@ export default function App(){
                     <Route path='/' element={<Login/>}/>
                     <Route path='/cadastro' element={<Register/>}/>
                     <Route path='/home' element={<Home/>}/>
-                    <Route path='/output' element={<Entry/>}/>
-                    <Route path='/entry' element={<Output/>}/>
+                    <Route path='/entry' element={<Entry/>}/>
+                    <Route path='/output' element={<Output/>}/>
                 </Routes>
             </BrowserRouter>
         </usuarioINFO.Provider>

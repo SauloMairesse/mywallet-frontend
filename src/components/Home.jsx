@@ -84,8 +84,8 @@ const HomeHTML = styled.main`
         position: relative;
         color: #fff;
         font-size: 25px;
-        left: 10px;
-        top: 10px;
+        left: 7px;
+        top: 5px;
     }
     span{
         position: relative;

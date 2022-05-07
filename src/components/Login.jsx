@@ -82,5 +82,6 @@ const LoginHTML = styled.main`
         line-height: 23px;
         letter-spacing: 0em;
         color: #fff;
+        border: none;
     }
 `
