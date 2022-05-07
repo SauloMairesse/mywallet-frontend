@@ -6,7 +6,7 @@ import usuarioINFO from '../contexts/userINFO'
 
 export default function App(){
 
-    const [userINFO, setUserINFO] = React.useContext({})
+    const [userINFO, setUserINFO] = React.useState({})
 
     return(
         <usuarioINFO.Provider value={{userINFO, setUserINFO}}>

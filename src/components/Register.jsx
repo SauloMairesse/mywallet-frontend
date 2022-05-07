@@ -5,21 +5,24 @@ import axios from 'axios'
 import usuarioINFO from '../contexts/userINFO'
 
 export default function Register(){
-
+    const {userINFO, setUserINFO} = React.useContext(usuarioINFO)
+    const URL = 'http://localhost:5000/sing-up'
+    const navigate = useNavigate()
+    
     const [registerINFO, setRegisterINFO] = React.useState({name: '',
                                                             email: '',
                                                             password: '',
                                                             pwConfirmation: ''})
-    const navigate = useNavigate()
 
-    function actionOnSubmit(){
-        event.preventDefault();
-        const URL = 'https://localhost:5000'
+    function actionOnSubmit(event){
+        event.preventDefault()
         const promise = axios.post(URL, {...registerINFO})
-        promise.then( (res) => {alert('Registrado')
+        promise.then( (res) => {setUserINFO(res.data)
+                                alert('Registrado')
                                 navigate('/')} )
         promise.catch( (err) => {console.log('Erro actionOnSubmit:\n', err)} )
     }
+
     return(
         <RegisterHTML>
             <h1>MyWallet</h1>
@@ -38,8 +41,8 @@ export default function Register(){
                         onChange={ (e) => setRegisterINFO({...registerINFO, password: e.target.value}) }/>
                 <input  type='password' 
                         placeholder={'Confirme a senha'}
-                        value={registerINFO.password}
-                        onChange={ (e) => setRegisterINFO({...registerINFO, password: e.target.value}) }/>
+                        value={registerINFO.pwConfirmation}
+                        onChange={ (e) => setRegisterINFO({...registerINFO, pwConfirmation: e.target.value}) }/>
                 <button type="submit">Entrar</button>     
             </form>
             <Link to={`/`}> <span> Já possui Conta ? Login</span> </Link>

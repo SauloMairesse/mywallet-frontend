@@ -5,17 +5,21 @@ import usuarioINFO from "../contexts/userINFO"
 import axios from "axios"
 
 export default function Login(){
-    const [userINFO, setUserINFO] =React.useContext(usuarioINFO)
+
+    const {userINFO, setUserINFO} = React.useContext(usuarioINFO)
+
+
     const [loginINFO, setLoginINFO] = React.useState({email: '',
-                                                    password: '',})
+                                                    password: ''})
 
     const navigate = useNavigate()
 
-    function actionOnSubmit(){
+    function actionOnSubmit(event){
         event.preventDefault();
-        const URL = 'https://localhost:5000'
+        const URL = 'http://localhost:5000/sing-in'
         const promise = axios.post(URL, {...loginINFO})
         promise.then( (res) => {setUserINFO(res.data)
+                                console.log(res.data)
                                 navigate('/FaltaProximaTela')} )
         promise.catch( (err) => {console.log('Erro actionOnSubmit:\n', err)} )
     }
