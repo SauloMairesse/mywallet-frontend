@@ -6,7 +6,7 @@ import usuarioINFO from '../contexts/userINFO'
 
 export default function Register(){
     const {userINFO, setUserINFO} = React.useContext(usuarioINFO)
-    const URL = 'http://localhost:5000/sing-up'
+
     const navigate = useNavigate()
     
     const [registerINFO, setRegisterINFO] = React.useState({name: '',
@@ -14,19 +14,25 @@ export default function Register(){
                                                             password: '',
                                                             pwConfirmation: ''})
 
-    function actionOnSubmit(event){
+    function register(event){
         event.preventDefault()
+        if(registerINFO.password !== registerINFO.pwConfirmation){
+            alert('as senhas nao sao iguais')
+            setRegisterINFO({...registerINFO, password:'', pwConfirmation:''})
+            return
+        }
+        const URL = 'http://localhost:5000/sing-up'
         const promise = axios.post(URL, {...registerINFO})
         promise.then( (res) => {setUserINFO(res.data)
                                 alert('Registrado')
                                 navigate('/')} )
-        promise.catch( (err) => {console.log('Erro actionOnSubmit:\n', err)} )
+        promise.catch( (err) => {console.log('Erro register:\n', err)} )
     }
 
     return(
         <RegisterHTML>
             <h1>MyWallet</h1>
-            <form onSubmit={actionOnSubmit}>
+            <form onSubmit={register}>
                 <input  type='name' 
                         placeholder={'Nome'}
                         value={registerINFO.name}

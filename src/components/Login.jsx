@@ -8,33 +8,32 @@ export default function Login(){
 
     const {userINFO, setUserINFO} = React.useContext(usuarioINFO)
 
-
     const [loginINFO, setLoginINFO] = React.useState({email: '',
                                                     password: ''})
-
     const navigate = useNavigate()
 
-    function actionOnSubmit(event){
+    function login(event){
         event.preventDefault();
         const URL = 'http://localhost:5000/sing-in'
         const promise = axios.post(URL, {...loginINFO})
         promise.then( (res) => {setUserINFO(res.data)
                                 console.log(res.data)
-                                navigate('/FaltaProximaTela')} )
-        promise.catch( (err) => {console.log('Erro actionOnSubmit:\n', err)} )
+                                navigate('/home')})
+        promise.catch( (err) => {console.log('Erro login:\n', err)} )
     }
+
     return (
         <LoginHTML>
             <h1>MyWallet</h1>
-            <form onSubmit={actionOnSubmit}>
+            <form onSubmit={login}>
                     <input  type='email' 
                             placeholder={'Email'}
                             value={loginINFO.email}
                             onChange={ (e) => setLoginINFO({...loginINFO, email: e.target.value}) }/>
                     <input  type="password"
                             placeholder={'Senha'}
-                            value={loginINFO.senha}
-                            onChange={ (e) => setLoginINFO({...loginINFO, senha: e.target.value}) }/>
+                            value={loginINFO.password}
+                            onChange={ (e) => setLoginINFO({...loginINFO, password: e.target.value}) }/>
                     <button type="submit">Entrar</button>     
             </form>
             <Link to={`/cadastro`}> <span> Ainda não possui Cadastro ? Cadastre-se </span> </Link>

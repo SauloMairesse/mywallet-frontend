@@ -3,6 +3,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './Login'
 import Register from './Register'
 import usuarioINFO from '../contexts/userINFO'
+import Home from './Home'
+import Entry from './Entry'
+import Output from './Output'
 
 export default function App(){
 
@@ -14,6 +17,9 @@ export default function App(){
                 <Routes>
                     <Route path='/' element={<Login/>}/>
                     <Route path='/cadastro' element={<Register/>}/>
+                    <Route path='/home' element={<Home/>}/>
+                    <Route path='/output' element={<Entry/>}/>
+                    <Route path='/entry' element={<Output/>}/>
                 </Routes>
             </BrowserRouter>
         </usuarioINFO.Provider>
