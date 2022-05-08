@@ -2,6 +2,7 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 import usuarioINFO from "../contexts/userINFO"
+import Transference from "./Transference"
 
 export default function Home(){
     const navigate = useNavigate()
@@ -16,10 +17,7 @@ export default function Home(){
             <h1>Olá, {userINFO.name}</h1>
             <ion-icon name="log-out-outline"></ion-icon>
             </header>
-           <section>
-                Não há registros de
-                entrada ou saída
-           </section>
+            <Transference/>
             <div>
                 <button  onClick={() => transference('entry')}>
                     <ion-icon   name="add-circle-outline"/>
@@ -50,7 +48,7 @@ const HomeHTML = styled.main`
         justify-content: space-between;
         align-items: center;
         justify-items: left;
-        padding: 10px 0 10px 0 ;
+        padding: 20px 0 20px 0 ;
     }
     h1{
         font-size: 26px;
@@ -58,12 +56,6 @@ const HomeHTML = styled.main`
         line-height: 31px;
         letter-spacing: 0em;
         color: #fff;
-    }
-    section{
-        height: 446px;
-        width: 326px;
-        border-radius: 5px;
-        background-color: #fff;
     }
     div{
         display: flex;
@@ -83,7 +75,7 @@ const HomeHTML = styled.main`
     ion-icon{
         position: relative;
         color: #fff;
-        font-size: 25px;
+        font-size: 30px;
         left: 7px;
         top: 5px;
     }
