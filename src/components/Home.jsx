@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 import usuarioINFO from "../contexts/userINFO"
 import Transference from "./Transference"
+import axios from "axios"
 
 export default function Home(){
     const navigate = useNavigate()
@@ -11,11 +12,21 @@ export default function Home(){
     function transference(transferType){
         navigate(`/${transferType}`)
     }
+
+    function logout(){
+        const config = {headers: { User: userINFO.name}}
+        const URL = 'http://localhost:5000/logout'
+        const promise = axios.post(URL, config)
+        promise.then( (response) => {console.log('Deu certo logout',response.data) 
+                                    setUserINFO({})
+                                    navigate('/')} )
+        promise.catch( (err) => console.log('Deu Erro logout',err))   }
+
     return (
         <HomeHTML>
             <header>
             <h1>Olá, {userINFO.name}</h1>
-            <ion-icon name="log-out-outline"></ion-icon>
+            <ion-icon onClick={logout} name="log-out-outline"></ion-icon>
             </header>
             <Transference/>
             <div>

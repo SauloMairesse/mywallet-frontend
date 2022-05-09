@@ -1,12 +1,12 @@
 import React from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 import usuarioINFO from "../contexts/userINFO"
 import axios from "axios"
 
 export default function Output(){
 
-    const {userINFO, setUserINFO} = React.useContext(usuarioINFO)
+    const {userINFO} = React.useContext(usuarioINFO)
 
     const [entryINFO, setEntryINFO] = React.useState({value: '',
                                                     description: ''})
@@ -27,11 +27,11 @@ export default function Output(){
         <EntryHTML>
             <h1>Nova Entrada</h1>
             <form onSubmit={registerEntry}>
-                    <input  type='text' 
+                    <input  type='number' required
                             placeholder={'Valor'}
                             value={entryINFO.value}
                             onChange={ (e) => setEntryINFO({...entryINFO, value: e.target.value}) }/>
-                    <input  type="text"
+                    <input  type="text" maxLength={30} required
                             placeholder={'Descrição'}
                             value={entryINFO.description}
                             onChange={ (e) => setEntryINFO({...entryINFO, description: e.target.value}) }/>

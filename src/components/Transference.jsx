@@ -5,23 +5,25 @@ import styled from 'styled-components'
 
 export default function Transference(){
 
-    const {userINFO, setUserINFO} = React.useContext(usuarioINFO)
+    const {userINFO} = React.useContext(usuarioINFO)
     const [userTransfers, setUserTransfers] = React.useState([])
-    const [sum, setSum] = React.useState(0)
+    let balance 
 
     React.useEffect( () => {
         const config = {headers: { User: userINFO.name}}
         const URL = 'http://localhost:5000/transference'
         const promise = axios.get(URL, config)
         promise.then( (response) => {console.log('Deu certo get transferencias',response.data) 
-                                    setUserTransfers(...userTransfers, response.data)} )
+        setUserTransfers(...userTransfers, response.data)} )
         promise.catch( (err) => console.log('Deu Erro get transferencias',err))   }   ,[])
-    
-    function Transfer(props){
-        React.useEffect( () => {
-            setSum( sum + props.value)
-        } ,[])
         
+    function calcBalance(){
+        balance = 0
+        userTransfers.forEach( (transfer) =>  {balance += parseFloat(transfer.value)})
+        balance = balance.toFixed(2)
+    }
+
+    function Transfer(props){
         return(
             <TransferHTML>
                 <aside>
@@ -32,6 +34,7 @@ export default function Transference(){
             </TransferHTML>
         )
     }
+
     if(userTransfers.length === 0){
         return(
             <TransferencesHTML>
@@ -39,24 +42,45 @@ export default function Transference(){
             </TransferencesHTML>
         )
     }else{
+        calcBalance()
         return(
             <TransferencesHTML>
-                {userTransfers.map( (transfer) =>  <Transfer  value={transfer.value}
-                                                            date={transfer.date}
-                                                            description={transfer.description}
-                                                            type={transfer.type}/> )}
+                <article className="transfers">
+                    {userTransfers.map( (transfer) =>  <Transfer  value={transfer.value}
+                                                                date={transfer.date}
+                                                                description={transfer.description}
+                                                                type={transfer.type}/> )}
+                </article>
+                <aside className="balance">saldo: <h6 className={balance >= 0 ? 'entry' : 'output'}> {balance} </h6> </aside>
             </TransferencesHTML>
         )
     }
 }
 
 const TransferencesHTML = styled.section`
+        position: relative;
         display: flex;
         flex-direction: column;
         height: 446px;
         width: 326px;
         border-radius: 5px;
         background-color: #fff;
+        overflow: scroll;
+        justify-content: space-between;
+        .transfers{
+            display: flex;
+            flex-direction: column;
+        }
+        .balance{  
+            display: flex;
+            position: sticky;
+            justify-content: space-between;
+            width: 100%;
+            bottom: 0%;
+            z-index: 2;
+            padding: 10px 5px 10px 10px;
+            background-color: #fff;
+        }
         *{
             box-sizing: border-box;
         }
@@ -66,7 +90,7 @@ const TransferencesHTML = styled.section`
             height: 60px;
             width: 240px;
             left: 44px;
-            top: 170px;
+            top: 200px;
             font-family: 'Raleway';
             font-style: normal;
             font-weight: 400;
@@ -84,6 +108,8 @@ const TransferencesHTML = styled.section`
             text-align: center;
             color: #868686;
         }
+        .output{ color: #C70000 }
+        .entry{ color: #03AC00 }
 `
 const TransferHTML = styled.article`
         display: flex;

@@ -1,12 +1,12 @@
 import React from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 import usuarioINFO from "../contexts/userINFO"
 import axios from "axios"
 
 export default function Output(){
 
-    const {userINFO, setUserINFO} = React.useContext(usuarioINFO)
+    const {userINFO} = React.useContext(usuarioINFO)
 
     const [outputINFO, setOutputINFO] = React.useState({value: '',
                                                     description: ''})
@@ -27,11 +27,11 @@ export default function Output(){
         <OutputHTML>
             <h1>Nova saída</h1>
             <form onSubmit={registerOutput}>
-                    <input  type='text' 
+                    <input  type='number' required
                             placeholder={'Valor'}
                             value={outputINFO.value}
                             onChange={ (e) => setOutputINFO({...outputINFO, value: e.target.value}) }/>
-                    <input  type="text"
+                    <input  type="text" maxLength={30} required
                             placeholder={'Descrição'}
                             value={outputINFO.description}
                             onChange={ (e) => setOutputINFO({...outputINFO, description: e.target.value}) }/>
@@ -87,5 +87,12 @@ const OutputHTML = styled.main`
         letter-spacing: 0em;
         color: #fff;
         border: none;
+    }
+    input[type='number'] {
+    -moz-appearance:textfield;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
     }
 `
