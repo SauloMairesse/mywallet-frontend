@@ -28,11 +28,11 @@ export default function Output(){
             <h1>Nova Entrada</h1>
             <form onSubmit={registerEntry}>
                     <input  type='number' required
-                            placeholder={'Valor'}
+                            placeholder={'  Valor'}
                             value={entryINFO.value}
                             onChange={ (e) => setEntryINFO({...entryINFO, value: e.target.value}) }/>
                     <input  type="text" maxLength={30} required
-                            placeholder={'Descrição'}
+                            placeholder={'  Descrição'}
                             value={entryINFO.description}
                             onChange={ (e) => setEntryINFO({...entryINFO, description: e.target.value}) }/>
                     <button type="submit">Salver entrada</button>     
@@ -73,6 +73,7 @@ const EntryHTML = styled.main`
         top: 233px;
         border-radius: 5px;
         margin-bottom: 15px;
+        border: none;
     }
     button{
         height: 46px;
@@ -88,5 +89,12 @@ const EntryHTML = styled.main`
         letter-spacing: 0em;
         color: #fff;
         border: none;
+    }
+    input[type='number'] {
+    -moz-appearance:textfield;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
     }
 `

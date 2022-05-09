@@ -28,11 +28,11 @@ export default function Output(){
             <h1>Nova saída</h1>
             <form onSubmit={registerOutput}>
                     <input  type='number' required
-                            placeholder={'Valor'}
+                            placeholder={'  Valor'}
                             value={outputINFO.value}
                             onChange={ (e) => setOutputINFO({...outputINFO, value: e.target.value}) }/>
                     <input  type="text" maxLength={30} required
-                            placeholder={'Descrição'}
+                            placeholder={'  Descrição'}
                             value={outputINFO.description}
                             onChange={ (e) => setOutputINFO({...outputINFO, description: e.target.value}) }/>
                     <button type="submit">Salver saída</button>     
@@ -72,6 +72,7 @@ const OutputHTML = styled.main`
         top: 233px;
         border-radius: 5px;
         margin-bottom: 15px;
+        border: none;
     }
     button{
         height: 46px;
