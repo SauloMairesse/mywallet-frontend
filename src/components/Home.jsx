@@ -15,7 +15,7 @@ export default function Home(){
 
     function logout(){
         const body = {body: { token: userINFO.token }}
-        const URL = 'http://localhost:5000/logout'
+        const URL = 'https://projetomywallet.herokuapp.com/logout'
         const promise = axios.post(URL, body)
         promise.then( (response) => {console.log('Deu certo logout',response.data) 
                                     setUserINFO({})

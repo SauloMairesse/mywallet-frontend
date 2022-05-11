@@ -14,7 +14,7 @@ export default function Output(){
 
     function registerOutput(event){
         event.preventDefault();
-        const URL = 'http://localhost:5000/output'
+        const URL = 'https://projetomywallet.herokuapp.com/output'
         const headers = {headers:{User: userINFO.name}}
         const promise = axios.post(URL, {...outputINFO}, headers)
         promise.then( (res) => {alert('Deu Certo Output, olhe console')

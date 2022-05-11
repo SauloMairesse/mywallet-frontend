@@ -11,7 +11,7 @@ export default function Transference(){
 
     React.useEffect( () => {
         const config = {headers: { User: userINFO.name}}
-        const URL = 'http://localhost:5000/transference'
+        const URL = 'https://projetomywallet.herokuapp.com/transference'
         const promise = axios.get(URL, config)
         promise.then( (response) => {console.log('Deu certo get transferencias',response.data) 
         setUserTransfers(...userTransfers, response.data)} )
