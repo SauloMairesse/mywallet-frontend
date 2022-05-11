@@ -29,7 +29,7 @@ export default function Home(){
             <ion-icon onClick={logout} name="log-out-outline"></ion-icon>
             </header>
             <Transference/>
-            <div>
+            <ButtonsDIV>
                 <button  onClick={() => transference('entry')}>
                     <ion-icon   name="add-circle-outline"/>
                     <span>Nova entrada</span>
@@ -38,12 +38,18 @@ export default function Home(){
                     <ion-icon   name="remove-circle-outline"/>
                     <span>Nova saída</span>
                 </button>
-            </div>
+            </ButtonsDIV>
         </HomeHTML>
         )
 }
 
-
+const ButtonsDIV = styled.div`
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 326px;
+        padding-top: 12px;
+`
 const HomeHTML = styled.main`
     width: 100%;
     height: 100vh;
@@ -68,13 +74,6 @@ const HomeHTML = styled.main`
         line-height: 31px;
         letter-spacing: 0em;
         color: #fff;
-    }
-    div{
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        width: 326px;
-        padding-top: 12px;
     }
     button{
         display: flex;
