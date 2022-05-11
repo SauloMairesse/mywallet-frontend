@@ -26,10 +26,10 @@ export default function Transference(){
     function Transfer(props){
         return(
             <TransferHTML>
-                <aside>
+                <div>
                     <h2>{props.date}</h2>
                     <h3>{props.description}</h3>
-                </aside> 
+                </div> 
                 <h4 className={props.type }>{props.value}</h4>
             </TransferHTML>
         )

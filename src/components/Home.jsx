@@ -29,7 +29,7 @@ export default function Home(){
             <ion-icon onClick={logout} name="log-out-outline"></ion-icon>
             </header>
             <Transference/>
-            <div>
+            <Button>
                 <button  onClick={() => transference('entry')}>
                     <ion-icon   name="add-circle-outline"/>
                     <span>Nova entrada</span>
@@ -38,10 +38,12 @@ export default function Home(){
                     <ion-icon   name="remove-circle-outline"/>
                     <span>Nova saída</span>
                 </button>
-            </div>
+            </Button>
         </HomeHTML>
         )
 }
+
+const Button = styled.div``
 
 const HomeHTML = styled.main`
     width: 100%;

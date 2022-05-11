@@ -15,7 +15,7 @@ export default function Login(){
     function login(event){
         console.log('tentando logar...')
         event.preventDefault();
-        const URL = 'http://localhost:5000/sing-in'
+        const URL = 'https://projetomywallet.herokuapp.com/sing-in'
         const promise = axios.post(URL, {...loginINFO})
         promise.then( (res) => {console.log('to aqui ?')
                                 setUserINFO(res.data)

@@ -21,7 +21,7 @@ export default function Register(){
             setRegisterINFO({...registerINFO, password:'', pwConfirmation:''})
             return
         }
-        const URL = 'http://localhost:5000/sing-up'
+        const URL = 'https://projetomywallet.herokuapp.com/sing-up'
         const promise = axios.post(URL, {...registerINFO})
         promise.then( (res) => {setUserINFO(res.data)
                                 alert('Registrado')
