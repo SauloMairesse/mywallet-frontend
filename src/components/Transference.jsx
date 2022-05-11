@@ -116,7 +116,9 @@ const TransferHTML = styled.article`
         width: 100%;
         padding: 10px 5px 10px 10px;
         justify-content: space-between;
-
+        div{
+            display: flex;
+        }
         *{
            box-sizing: border-box;
         }
